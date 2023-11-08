@@ -6,12 +6,11 @@ Student: Alisa Kichik
 
 # Calculate function
 def calculate_average(nums):
-    # Initial data
-    nums = [10, 15, 20]
-    # Calculations
     total = sum(nums)
     count = len(nums)
-    average = total / count
-    result = average(nums)
-    # Output result
-    print("The average is:", result)
+    return total / count
+
+
+nums = [10, 15, 20]
+result = calculate_average(nums)
+print("The average is:", result)
