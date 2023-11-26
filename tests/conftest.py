@@ -1,6 +1,7 @@
 import pytest
 from otus_qa_python.src.Circle import Circle
 from otus_qa_python.src.Triangle import Triangle
+from contextlib import contextmanager
 
 
 @pytest.fixture
@@ -16,3 +17,7 @@ def triangle_sides():
     side_z = 5
     return Triangle(side_x, side_y, side_z)
 
+
+@contextmanager
+def does_not_raise():
+    yield

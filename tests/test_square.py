@@ -14,12 +14,12 @@ def test_rectangle_valid(side_x, perimeter, area):
     assert s.get_area() == area
 
 
-@pytest.mark.parametrize(("side_x", "expected_exception"),
+@pytest.mark.parametrize("side_x",
                          [
-                             (-3, ValueError),
-                             (0, ValueError),
-                             ("one", ValueError)
+                             (-3),
+                             0,
+                             "one"
                          ], ids=["negative_side", "zero_side", "string_side"])
-def test_square_invalid(side_x, expected_exception):
-    with pytest.raises(expected_exception):
+def test_square_invalid(side_x):
+    with pytest.raises(ValueError):
         Square(side_x)
