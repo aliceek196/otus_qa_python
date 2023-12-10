@@ -13,12 +13,12 @@ def test_circle_valid_area(circle_positive):
     assert circle_positive.get_area() == expected_area
 
 
-@pytest.mark.parametrize(("radius", "expected_exception"),
+@pytest.mark.parametrize("radius",
                          [
-                            (-3, ValueError),
-                            (0, ValueError),
-                            ("five", ValueError)
-                        ], ids=["negative_radius", "zero_radius", "string_radius"])
-def test_circle_invalid(radius, expected_exception):
-    with pytest.raises(expected_exception):
+                             (-3),
+                             0,
+                             "five"
+                         ], ids=["negative_radius", "zero_radius", "string_radius"])
+def test_circle_invalid(radius):
+    with pytest.raises(ValueError):
         Circle(radius)

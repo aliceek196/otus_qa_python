@@ -1,5 +1,6 @@
 import pytest
 from otus_qa_python.src.Triangle import Triangle
+from otus_qa_python.tests.conftest import does_not_raise
 
 
 @pytest.mark.parametrize(("side_x", "side_y", "side_z"), [
@@ -13,11 +14,12 @@ from otus_qa_python.src.Triangle import Triangle
 ], ids=["valid_triangle", "valid_equilateral_triangle", "valid_isosceles_triangle", "invalid_triangle_of_sum_sides",
         "invalid_triangle_x_is_zero", "invalid_triangle_y_is_negative", "invalid_triangle_z_is_string"])
 def test_create_triangle(side_x, side_y, side_z):
-    if side_x + side_y <= side_z or side_x + side_z <= side_y or side_y + side_z <= side_x or \
-            any(side <= 0 for side in (side_x, side_y, side_z)):
-        with pytest.raises(ValueError):
-            Triangle(side_x, side_y, side_z)
-    else:
+    with pytest.raises(ValueError) if (
+            side_x + side_y <= side_z or
+            side_x + side_z <= side_y or
+            side_y + side_z <= side_x or
+            any(side <= 0 for side in (side_x, side_y, side_z))
+    ) else does_not_raise():
         tr = Triangle(side_x, side_y, side_z)
         assert tr.side_x == side_x
         assert tr.side_y == side_y
